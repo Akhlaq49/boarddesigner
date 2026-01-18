@@ -1,0 +1,287 @@
+KNX Switch
+
+Scope 
+
+0) Goal
+
+Build a web-based visual configurator (a mini web-app embedded in our site) where a visitor can:
+
+Choose a KNX switch product (Dora series + Pblock)
+
+Customize button layout + icons + colors (buttons and frame)
+
+Instantly see a live preview of the configured product
+
+Export the final configuration as a PDF with our branding
+
+Start a new configuration after export (no need to “save” designs)
+
+Reference behavior/UI: match the interaction pattern and product structure of the reference configurator (FutureKNX), but implemented for our domain and our assets.
+
+The reference site is: https://www.futureknx.com/knx-switches/customize
+
+1) Products included (Phase 1)
+
+Product groups
+
+Dora series
+
+Dora Switch (buttons)
+
+Dora Keypad / Thermostat (same button-count family for our purposes)
+
+Dora XL
+
+Pblock (new series to be included in the configurator)
+
+Button-count models
+
+Dora Switch: 2, 3, 4, 5, 6, 7, 8 buttons
+
+Dora Thermostat/Keypad: 2, 3, 4, 5, 6, 7, 8 buttons
+
+Dora XL: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 buttons
+
+Product set
+
+The configurator should be 1:1 aligned with the reference product set / structure for Dora (as in the reference tool), plus Pblock added.
+
+2) Color strategy (Phase 1)
+
+Fixed color list only (no RGBA picker)
+
+Buttons AND frame can be assigned different colors
+
+Color list will be an exact reference from https://www.futureknx.com/knx-switches/customize
+
+In scope:
+
+Choose frame color from list
+
+Choose button colors from list (per button or per area; details depend on design, but must allow “different colors” as stated)
+
+Out of scope:
+
+RGBA / free color picker
+
+Advanced gradients/material shaders unless already part of provided assets
+
+3) Icon strategy (Phase 1)
+
+Users can assign an icon per button from a provided icon library
+
+Icons are provided by us (SVG/PNG/etc. Referenced from FutureKNX website)
+
+No restriction rules: any icon on any button is allowed
+
+No “incompatible combinations” blocking (explicit requirement)
+
+4) User types & access
+
+Primary user = any visitor (public access)
+
+No login required in Phase 1
+(Login may be considered later only if needed.)
+
+5) Admin panel / backoffice
+
+No admin panel in Phase 1 (explicitly “unnecessary”)
+
+Updates like adding new products/icons/colors are handled by:
+
+editing configuration files / data structures
+
+redeploying / updating the app
+(i.e., “developer update”, not staff-managed UI)
+
+6) Saving, archive, and analytics
+
+Saving / archive
+
+No saving of user designs
+
+No “open later and edit”
+
+Flow is: configure → export PDF → optionally reset and start a new configuration
+
+Analytics / logging
+
+No analytics / selection logging required in Phase 1
+(No “most selected icons”, no “most configured products”.)
+
+7) UX flow (what the user sees)
+
+Minimum expected flow:
+
+Select product series (Dora Switch / Dora Thermostat-Keypad / Dora XL / Pblock)
+
+Select model (button count)
+
+Configurator screen:
+
+live preview visible at all times
+
+edit the button layout however they please
+
+click/tap a button area → choose icon for that button
+
+apply colors to buttons + frame from fixed lists
+
+Export
+
+user clicks “Export PDF”
+
+PDF downloads locally
+
+New configuration
+
+after export, user can reset or start a new config quickly
+
+8) PDF export (Phase 1 – required)
+
+Content
+
+PDF must include:
+
+Final configured product preview image
+
+Selected icons shown as configured
+
+Model name / product identification
+
+Company logo
+
+Company information/contact
+
+Output format
+
+PDF is download-only (no email sending in Phase 1)
+
+Single file download per configuration
+
+Filename requirement (important)
+
+PDF file name must follow a structured pattern like:
+
+GR20260110_48
+We need a consistent naming method (prefix + date + incremental/unique suffix).
+Dev should propose the exact rule (example accepted).
+
+Multi-page
+
+Not specified. Default expectation: single-page PDF unless the design requires otherwise.
+
+Out of scope (Phase 1):
+
+Emailing PDFs
+
+User accounts to store PDFs
+
+Complex quoting systems / CRM integration
+
+9) Visual quality expectations
+
+Preview quality: low/medium is fine, good enough to understand what is selected
+
+No need for:
+
+1:1 real-world dimensions
+
+production-accurate scaling
+
+print-grade rendering
+
+10) Responsive / device support
+
+Desktop-first (browser)
+
+Mobile/tablet support was not confirmed—so the expectation is:
+
+it should not completely break on mobile,
+
+but full mobile-optimized UX is not a Phase 1 requirement unless explicitly requested later.
+
+11) “New product can be added” requirement
+
+The configurator must be built in a data-driven way so the dev can add:
+
+new product series
+
+new models/layouts
+
+new icons
+
+new fixed colors
+with minimal code rewriting.
+
+12) Deliverables
+
+Developer must deliver:
+
+A working configurator embedded into our domain (or hosted and embedded)
+
+All source code + build instructions
+
+A clear configuration structure for:
+
+product groups
+
+models/layouts
+
+icons
+
+colors
+
+PDF export implementation with correct branding + filename method
+
+Basic installation notes (how to deploy/update)
+
+13) Integration & access rules (important for safety)
+
+We do not share full production admin access before contract/milestones
+
+Preferred: work via staging environment / repo / deployment link
+
+Use milestone-based delivery (to avoid “half-done” and disputes)
+
+14) Out of scope (explicit “NO” list)
+
+To prevent scope creep, Phase 1 excludes:
+
+Admin panel/backoffice
+
+Login system (unless later required)
+
+Saving designs / reopening/editing later
+
+Customer-specific archives
+
+Analytics dashboards
+
+Email PDF sending
+
+Complex rule validation (“this icon not allowed here”)
+
+Full mobile-first redesign
+
+Quotation/ordering/payment workflow
+
+Suggested milestone plan (so pricing stays stable)
+
+Milestone 1: Core configurator MVP
+
+product selection + layouts + button selection + icon assignment
+
+colors (fixed list) + frame color
+
+live preview working end-to-end
+
+Milestone 2: PDF export
+
+branded PDF + download
+
+correct filename convention
+
+Milestone 3: Pblock integration (if not already completed in M1)
+
+add Pblock series using the same data-driven structure
